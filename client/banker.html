@@ -1,0 +1,117 @@
+<!-- banker.html -->
+
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service</title>
+
+    <link rel="stylesheet" href="/css?q=bootstrap">
+    <link rel="stylesheet" href="/css?q=bootstrap-theme">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
+
+  <!-- Compiled and minified JavaScript -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
+       
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
+    <script>
+        $(document).ready(function () {
+            $("#chatInput").focus();
+
+            $("#sendButton").on("click", function () {
+                $("#chatArea").prepend($("#chatInput").val() + "<br><br>");
+                $("#chatInput").val("");
+
+            });
+
+            $("#chatInput").keypress(function (event) {
+
+                var key = event.which;
+                if (key == 13) {
+                    $.ajax({
+                        url: "/chatMsg?q=" + $("#chatInput").val(),
+                        success: function (result) {
+                            console.log(result);
+                            $("#sendButton").click();
+                            $("#chatArea").prepend(result + "<br><br>");
+
+                        }
+                    });
+
+
+
+                }
+                //115
+            });
+
+            $("#yesBtn").on("click", function () {
+                $.ajax({
+                    url: "/feedback?q=yes",
+                    success: function (result) {
+                        console.log(result);
+                       
+
+                    }
+                });
+            });
+
+            $("#noBtn").on("click", function () {
+                $.ajax({
+                    url: "/chatMsg?q=no",
+                    success: function (result) {
+                        console.log(result);
+                      
+
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <h1 class="col-md-12"></h1>
+    <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1 well">
+
+            <div class="col-md-12" style="height:400px;margin-top:10px;">
+
+                <div id="chatArea" disabled class="col-md-12" style="padding: 0px;height: 100%;margin: 0px;overflow:auto;background-color:white;"></div>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <div class="col-md-12" style="">
+                <input id="chatInput" type="text" class="col-md-10 well" style="padding: 0px;height: 40px;margin: 0px;" />
+                <button id="sendButton" type="button" class="btn btn-default col-md-2" style="height:40px;">Send</button>
+
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+        <hr>
+        <div class="col-md-3 col-md-offset-9" style="">
+            Did you find the answer helpful?
+            <br>
+            <button id="yesBtn" class="btn btn-default">Yes</button>
+            <button id="noBtn" class="btn btn-default">No</button>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
