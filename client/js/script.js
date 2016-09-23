@@ -5,10 +5,34 @@ $(document).ready(function () {
         	 var socket = io.connect();
 			 socket.on('chat-resp', function (data) {
 			 	console.log(data);
+
+			 	var type = data["type"];
+
+			 	if(type==2){
+
+			 		var link_items = data["links"];
+
+			 		var link_html_content = "";
+			 		// $("#chatArea").prepend("<div class='link_box'>");
+			 		link_html_content = link_html_content + "<div class='hi_msg'>"+data["msg"]+"</div><br><div class='link_box'><div class='msgDiv'>";
+
+			 		for(item in link_items){
+			 			console.log(link_items[item]);
+			 			link_html_content = link_html_content + "<a target='blank' href="+link_items[item]["url"]+">"+link_items[item]["name"]+"" + "<br>";
+	                	// $("#chatArea").prepend("<div class='msgDiv'><a target='blank' href="+link_items[item]["url"]+">"+link_items[item]["name"]+"</div>" + "<br>");	
+			 		}
+			 		// $("#chatArea").prepend("</div>");
+			 		link_html_content = link_html_content + "</div></div>";
+
+			 		$("#chatArea").prepend(link_html_content);
+			 		$("#sendButton").click();
+			 	}else{
+				 	 $("#chatArea").prepend("<div class='msgDiv' >"+$("#chatInput").val() + "</div><br><br>");
+				 	 $("#sendButton").click();
+			 	}
 			    console.log(data["msg"]);
 
-			    $("#sendButton").click();
-                $("#chatArea").prepend("<div class='msgDiv'>"+data["msg"]+"</div>" + "<br><br>");
+			    
 
 			    // socket.emit('my other event', { my: 'data' });
 			 });
