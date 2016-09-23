@@ -11,70 +11,13 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
-
-  <!-- Compiled and minified JavaScript -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
-       
+    <link rel="stylesheet" href="/css/style.css">
 
     <script src="/js/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-    <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
-    <script>
-        $(document).ready(function () {
-            $("#chatInput").focus();
-
-            $("#sendButton").on("click", function () {
-                $("#chatArea").prepend("<div class='msgDiv' >"+$("#chatInput").val() + "</div><br><br>");
-                $("#chatInput").val("");
-
-            });
-
-            $("#chatInput").keypress(function (event) {
-
-                var key = event.which;
-                if (key == 13) {
-                    $.ajax({
-                        url: "/chatMsg?q=" + $("#chatInput").val(),
-                        success: function (result) {
-                            console.log(result);
-                            $("#sendButton").click();
-                            $("#chatArea").prepend("<div class='msgDiv'>"+result+"</div>" + "<br><br>");
-
-                        }
-                    });
-
-
-
-                }
-                //115
-            });
-
-            $("#yesBtn").on("click", function () {
-                $.ajax({
-                    url: "/feedback?q=yes",
-                    success: function (result) {
-                        console.log(result);
-                       
-
-                    }
-                });
-            });
-
-            $("#noBtn").on("click", function () {
-                $.ajax({
-                    url: "/chatMsg?q=no",
-                    success: function (result) {
-                        console.log(result);
-                      
-
-                    }
-                });
-            });
-        });
-    </script>
+    <script type="text/javascript" src="/js/script.js"></script>
 
 
 </head>
@@ -102,12 +45,6 @@
         <br>
         <br>
         <hr>
-        <!-- <div class="col-md-3 col-md-offset-9" style="">
-            Did you find the answer helpful?
-            <br>
-            <button id="yesBtn" class="btn btn-default">Yes</button>
-            <button id="noBtn" class="btn btn-default">No</button>
-        </div> -->
 
     </div>
 

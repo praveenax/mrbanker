@@ -15,24 +15,27 @@ app.get('/', function (req, res) {
 });
 
 app.get('/chatMsg', function (req, res) {
-    //res.send('Hello World!');
+    
     var q = req["query"]["q"];
-
-    // res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-    // var val = compareQuestion(q);
-     // res.send("Hi" + val);
-    res.send("Hi");
-    // var dataSpl = speak.classify("What is your name?");
-
-    //console.log(req);
+	res.send("Hi");
+    
 });
 
 
 io.on('connection', function (socket) {
     console.log('a user connected');
-    io.emit('chat', {
-        msg: "TestMsg"
-    });
+    // io.emit('chat', {
+    //     msg: "TestMsg"
+    // });
+
+
+    socket.on('chat', function (data) {
+    	console.log(data);
+    	io.emit('chat-resp', {
+        	msg: ""+data["msg"]
+    	});
+  	});
+
 });
 
 var server = http.listen(3000, function () {
