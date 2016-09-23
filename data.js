@@ -11,7 +11,7 @@ var decision_tree = [
 	{	
 		node_id:"p1",
 		node_name:"Transaction",
-		child_nodes:[
+		child_node:[
 			{	
 				node_id:"p1c1",
 				node_name:"Security password correct "
