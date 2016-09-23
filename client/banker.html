@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Service</title>
 
-    <link rel="stylesheet" href="/css?q=bootstrap">
-    <link rel="stylesheet" href="/css?q=bootstrap-theme">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
 
@@ -27,7 +27,7 @@
             $("#chatInput").focus();
 
             $("#sendButton").on("click", function () {
-                $("#chatArea").prepend($("#chatInput").val() + "<br><br>");
+                $("#chatArea").prepend("<div class='msgDiv' >"+$("#chatInput").val() + "</div><br><br>");
                 $("#chatInput").val("");
 
             });
@@ -41,7 +41,7 @@
                         success: function (result) {
                             console.log(result);
                             $("#sendButton").click();
-                            $("#chatArea").prepend(result + "<br><br>");
+                            $("#chatArea").prepend("<div class='msgDiv'>"+result+"</div>" + "<br><br>");
 
                         }
                     });
@@ -102,12 +102,12 @@
         <br>
         <br>
         <hr>
-        <div class="col-md-3 col-md-offset-9" style="">
+        <!-- <div class="col-md-3 col-md-offset-9" style="">
             Did you find the answer helpful?
             <br>
             <button id="yesBtn" class="btn btn-default">Yes</button>
             <button id="noBtn" class="btn btn-default">No</button>
-        </div>
+        </div> -->
 
     </div>
 

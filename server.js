@@ -14,6 +14,19 @@ app.get('/', function (req, res) {
 
 });
 
+app.get('/chatMsg', function (req, res) {
+    //res.send('Hello World!');
+    var q = req["query"]["q"];
+
+    // res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    // var val = compareQuestion(q);
+     // res.send("Hi" + val);
+    res.send("Hi");
+    // var dataSpl = speak.classify("What is your name?");
+
+    //console.log(req);
+});
+
 
 io.on('connection', function (socket) {
     console.log('a user connected');
