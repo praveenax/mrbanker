@@ -106,3 +106,12 @@ content: ' ';
 #chatInput{
 	background: #f0f0f0 !important;
 }
+
+.chat-btn{
+	/*width: 100px;
+	margin-bottom: 10px;
+	float: right;*/
+
+	width: 100%;
+	margin-bottom: 10px;
+}
