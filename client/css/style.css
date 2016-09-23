@@ -4,7 +4,7 @@
 	color:red;
 }*/
 
-.talktext{
+/*.talktext{
   padding: 1em;
 	text-align: left;
   line-height: 1.5em;
@@ -42,9 +42,9 @@
 	bottom: -20px;
 	border: 12px solid;
 	border-color: lightyellow transparent transparent lightyellow;
-}
+}*/
 
-.msgDiv:before {
+/*.msgDiv:before {
 content: ' ';
 	position: absolute;
 	width: 0;
@@ -68,4 +68,41 @@ content: ' ';
 	bottom: -20px;
 	border: 12px solid;
 	border-color: lightyellow transparent transparent lightyellow;
+}*/
+
+.link_box{
+	text-align: right;
+	padding: 10px;
+	background: white;
+	border-radius: 10px;
+	width: 80%;
+	float: right;
+	margin-top: 10px;
+}
+
+.hi_msg{
+	text-align: right;
+	padding: 10px;
+	text-align: right;
+	padding: 10px;
+	background: white;
+	border-radius: 10px;
+	width: 80%;
+	float: right;
+	margin-top: 10px;
+}
+
+.msgDiv{
+	text-align: left;
+	padding: 10px;
+	background: white;
+	border-radius: 10px;
+	width: 80%;
+	float: left;
+	margin-top: 10px;
+
+}
+
+#chatInput{
+	background: #f0f0f0 !important;
 }
