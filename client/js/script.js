@@ -1,13 +1,19 @@
 // script.js
 
+function view(param) {
+    console.log($(param).attr("nodeid"));
+
+    var nodeId = $(param).attr("nodeid");
+}
+
 $(document).ready(function () {
 
-    function view(param) {
-        console.log(param);
-    }
+	
+    
 
     $(".chat-btn").on("click", function (data) {
         console.log(data);
+        view('test');
     });
 
     var socket = io.connect();
@@ -29,13 +35,17 @@ $(document).ready(function () {
                 // var node_id_tmp = "'"+ link_items[item]["node_id"]+"'";
                 var node_id_tmp = link_items[item]["node_id"];
                 var node_name_tmp = link_items[item]["node_name"];
-                link_html_content = link_html_content + "<input type='button' class='btn btn-info chat-btn' onclick=view('" + node_id_tmp + "')  value='" + node_name_tmp + "'  /><br>";
+                link_html_content = link_html_content + "<input nodeid='"+node_id_tmp+"' type='button' class='btn btn-info chat-btn'   value='" + node_name_tmp + "'  /><br>";
                 // $("#chatArea").prepend("<div class='msgDiv'><a target='blank' href="+link_items[item]["url"]+">"+link_items[item]["name"]+"</div>" + "<br>");	
             }
             // $("#chatArea").prepend("</div>");
             link_html_content = link_html_content + "</div></div>";
 
             $("#chatArea").prepend(link_html_content);
+
+            $('.chat-btn').removeAttr("onclick");
+			$('.chat-btn').attr("onClick", "view(this)");
+            
             $("#sendButton").click();
         } else {
             $("#chatArea").prepend("<div class='msgDiv' >" + $("#chatInput").val() + "</div><br><br>");
