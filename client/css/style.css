@@ -115,3 +115,10 @@ content: ' ';
 	width: 100%;
 	margin-bottom: 10px;
 }
+
+#chatArea{
+	padding: 0px;
+	height: 100%;
+	margin: 0px;
+	overflow:auto;
+}

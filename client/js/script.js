@@ -1,12 +1,21 @@
 // script.js
 
-function view(param) {
+
+$(document).ready(function () {
+
+	view = function(param) {
     console.log($(param).attr("nodeid"));
 
     var nodeId = $(param).attr("nodeid");
-}
 
-$(document).ready(function () {
+    emitMsg('node_event', {
+                nodeId: '' + nodeId
+    });
+
+    // socket.emit('node_event', {
+    //             nodeId: '' + $nodeId
+    // });
+	}
 
 	
     
@@ -17,6 +26,12 @@ $(document).ready(function () {
     });
 
     var socket = io.connect();
+
+    emitMsg = function(event_name,event_data){
+    	socket.emit(event_name, event_data);
+
+    }
+
     socket.on('chat-resp', function (data) {
         console.log(data);
 
@@ -85,3 +100,18 @@ $(document).ready(function () {
 
 
 });
+
+
+// function view(param) {
+//     console.log($(param).attr("nodeid"));
+
+//     var nodeId = $(param).attr("nodeid");
+
+//     emitMsg('node_event', {
+//                 nodeId: '' + $nodeId
+//     });
+
+//     // socket.emit('node_event', {
+//     //             nodeId: '' + $nodeId
+//     // });
+// }

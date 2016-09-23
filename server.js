@@ -58,6 +58,30 @@ io.on('connection', function (socket) {
     	
   	});
 
+  	//node_event
+
+  	 socket.on('node_event', function (data) {
+    	console.log(data);
+
+    	var inp_chat_str = data["msg"];
+
+    	//find unique id from the tree
+    	
+    	
+
+    	
+			io.emit('chat-resp', {
+					type:2,
+			        msg: "Hi. I am Mr.Banker. What can I help you with?",
+			        // links:[{name:"Google",url:"http://www.google.com"},{name:"Facebook",url:"http://www.facebook.com"},{name:"Github",url:"http://www.github.com"}]
+			        links:decision_tree["data"]
+
+			 });
+    	
+
+    	
+  	});
+
 });
 
 var server = http.listen(3000, function () {
