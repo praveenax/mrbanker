@@ -62,6 +62,38 @@ $(document).ready(function () {
 			$('.chat-btn').attr("onClick", "view(this)");
             
             $("#sendButton").click();
+        }else if(type == 3){
+        	var link_items = data["links"];
+
+            var link_html_content = "";
+            // $("#chatArea").prepend("<div class='link_box'>");
+            link_html_content = link_html_content + "<div class='hi_msg'>" + data["msg"] + "</div><br><div class='link_box'><div class='msgDiv'>";
+
+            for (item in link_items) {
+                console.log(link_items[item]);
+
+                var blog_title = link_items[item]["link_title"];
+                var blog_link = link_items[item]["link"];
+                var blog_img = link_items[item]["link_img"];
+
+                // var node_id_tmp = "'"+ link_items[item]["node_id"]+"'";
+                // var node_id_tmp = link_items[item]["node_id"];
+                // var node_name_tmp = link_items[item]["node_name"];
+                // link_html_content = link_html_content + "<input nodeid='"+node_id_tmp+"' type='button' class='btn btn-info chat-btn'   value='" + node_name_tmp + "'  /><br>";
+
+                link_html_content = link_html_content + "<img src='"+blog_img+"' class='blog_img' width=150 height=150 /><br><h4><a target='blank' href='"+blog_link+"' >"+blog_title+"</a></h4>";
+                // $("#chatArea").prepend("<div class='msgDiv'><a target='blank' href="+link_items[item]["url"]+">"+link_items[item]["name"]+"</div>" + "<br>");	
+            }
+            // $("#chatArea").prepend("</div>");
+            link_html_content = link_html_content + "</div></div>";
+
+            $("#chatArea").prepend(link_html_content);
+
+            $('.chat-btn').removeAttr("onclick");
+			$('.chat-btn').attr("onClick", "view(this)");
+            
+            $("#sendButton").click();
+
         } else {
             $("#chatArea").prepend("<div class='msgDiv' >" + $("#chatInput").val() + "</div><br><br>");
             $("#sendButton").click();
