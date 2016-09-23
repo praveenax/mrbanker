@@ -9,8 +9,9 @@ var _ = require('underscore');
 
 
 var decision_tree = require('./data');
+var blogs = require('./blogs');
 
-console.log(decision_tree);
+console.log(blogs);
 
 
 
@@ -35,6 +36,15 @@ io.on('connection', function (socket) {
     properEmit = function(event_name,event_msg,event_links){
     	io.emit(event_name, {
 					type:2,
+			        msg: event_msg,
+			        links:event_links
+
+		});
+    }
+
+    blogEmit = function(event_name,event_msg,event_links){
+    	io.emit(event_name, {
+					type:3,
 			        msg: event_msg,
 			        links:event_links
 
@@ -68,6 +78,7 @@ io.on('connection', function (socket) {
     	console.log(inp_chat_str);
     	var tmp_arr = [];
     	var tmp_node_name = "";
+    	var tmp_node_type = 0;
 
     	var data_arr = decision_tree["data"];
 
@@ -77,17 +88,48 @@ io.on('connection', function (socket) {
     	for(item in data_arr){
     		var tmp_obj = data_arr[item];
 
-    		if(tmp_obj["node_id"] == inp_chat_str ){
-    			tmp_arr = tmp_obj["child_node"];
-    			tmp_node_name = tmp_obj["node_name"];
+    		if(tmp_obj["node_type"] == 1){
+    			tmp_node_type = 1;
 
-    			break;
+    			if(tmp_obj["node_id"] == inp_chat_str ){
+	    			tmp_arr = tmp_obj["child_node"];
+	    			tmp_node_name = tmp_obj["node_name"];
+
+	    			break;
+	    		}
+
+
+    		}else if(tmp_obj["node_type"] == 2){
+    			tmp_node_type = 2;
+
+    		}else if(tmp_obj["node_type"] == 3){
+
+    			tmp_node_type = 3;
+
+    			if(tmp_obj["node_id"] == inp_chat_str ){
+					tmp_arr = tmp_obj["blog_arr"];
+					tmp_node_name = tmp_obj["node_name"];
+
+					break;
+				}
+
+
     		}
 
+    		
 
     	}
 
-    	properEmit('chat-resp',"Your Choice: "+tmp_node_name,tmp_arr);
+    	if(tmp_node_type == 1){
+    		properEmit('chat-resp',"Your Choice: "+tmp_node_name,tmp_arr);	
+    	}else if(tmp_node_type == 2){
+    		// properEmit('chat-resp',"Your Choice: "+tmp_node_name,tmp_arr);	
+    	}else if(tmp_node_type == 3){
+    		// properEmit('chat-resp',"Your Choice: "+tmp_node_name,tmp_arr);
+    		blogEmit('chat-resp',"Your Suggested Article: "+tmp_node_name,tmp_arr);	
+
+    	}
+    	
 
   
     	
