@@ -31,9 +31,23 @@ io.on('connection', function (socket) {
 
     socket.on('chat', function (data) {
     	console.log(data);
-    	io.emit('chat-resp', {
-        	msg: ""+data["msg"]
-    	});
+
+    	var inp_chat_str = data["msg"];
+
+    	if(inp_chat_str == "@banker"){
+			io.emit('chat-resp', {
+					type:2,
+			        msg: "Hi. I am Mr.Banker. What can I help you with?",
+			        links:[{name:"Google",url:"http://www.google.com"},{name:"Facebook",url:"http://www.facebook.com"},{name:"Github",url:"http://www.github.com"}]
+			 });
+    	}else{
+    		io.emit('chat-resp', {
+    			type:1,
+        		msg: ""+data["msg"]
+    		});
+    	}
+
+    	
   	});
 
 });
