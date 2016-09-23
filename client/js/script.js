@@ -19,7 +19,7 @@ $(document).ready(function () {
 
             	
 
-                $("#chatArea").prepend("<div class='msgDiv' >"+$("#chatInput").val() + "</div><br><br>");
+                // $("#chatArea").prepend("<div class='msgDiv' >"+$("#chatInput").val() + "</div><br><br>");
                 $("#chatInput").val("");
 
             });
