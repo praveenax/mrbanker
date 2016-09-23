@@ -6,6 +6,12 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var decision_tree = require('./data');
+
+console.log(decision_tree);
+
+
+
 app.use(express.static('client'));
 
 app.get('/', function (req, res) {
@@ -38,7 +44,9 @@ io.on('connection', function (socket) {
 			io.emit('chat-resp', {
 					type:2,
 			        msg: "Hi. I am Mr.Banker. What can I help you with?",
-			        links:[{name:"Google",url:"http://www.google.com"},{name:"Facebook",url:"http://www.facebook.com"},{name:"Github",url:"http://www.github.com"}]
+			        // links:[{name:"Google",url:"http://www.google.com"},{name:"Facebook",url:"http://www.facebook.com"},{name:"Github",url:"http://www.github.com"}]
+			        links:decision_tree["data"]
+
 			 });
     	}else{
     		io.emit('chat-resp', {
