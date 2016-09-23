@@ -3,7 +3,7 @@
 $(document).ready(function () {
 
         	 var socket = io.connect();
-			 socket.on('chat-resp', function (data) {
+			 socket.on('chat-resp', function (data){
 			 	console.log(data);
 
 			 	var type = data["type"];
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 			 		for(item in link_items){
 			 			console.log(link_items[item]);
-			 			link_html_content = link_html_content + "<a target='blank' href="+link_items[item]["url"]+">"+link_items[item]["name"]+"" + "<br>";
+			 			link_html_content = link_html_content + "<a target='blank' href='\serve?q='"+link_items[item]["node_id"]+">"+link_items[item]["node_name"]+"" + "<br>";
 	                	// $("#chatArea").prepend("<div class='msgDiv'><a target='blank' href="+link_items[item]["url"]+">"+link_items[item]["name"]+"</div>" + "<br>");	
 			 		}
 			 		// $("#chatArea").prepend("</div>");
@@ -60,25 +60,5 @@ $(document).ready(function () {
                 //115
             });
 
-            $("#yesBtn").on("click", function () {
-                $.ajax({
-                    url: "/feedback?q=yes",
-                    success: function (result) {
-                        console.log(result);
-                       
-
-                    }
-                });
-            });
-
-            $("#noBtn").on("click", function () {
-                $.ajax({
-                    url: "/chatMsg?q=no",
-                    success: function (result) {
-                        console.log(result);
-                      
-
-                    }
-                });
-            });
+            
 });
