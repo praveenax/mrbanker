@@ -61,7 +61,7 @@ $(document).ready(function () {
             $('.chat-btn').removeAttr("onclick");
 			$('.chat-btn').attr("onClick", "view(this)");
             
-            $("#sendButton").click();
+            // $("#sendButton").click();
         }else if(type == 3){
         	var link_items = data["links"];
 
@@ -92,11 +92,11 @@ $(document).ready(function () {
             $('.chat-btn').removeAttr("onclick");
 			$('.chat-btn').attr("onClick", "view(this)");
             
-            $("#sendButton").click();
+            // $("#sendButton").click();
 
         } else {
             $("#chatArea").prepend("<div class='msgDiv' >" + $("#chatInput").val() + "</div><br><br>");
-            $("#sendButton").click();
+            // $("#sendButton").click();
         }
         console.log(data["msg"]);
 
@@ -110,6 +110,9 @@ $(document).ready(function () {
     $("#sendButton").on("click", function () {
 
         // $("#chatArea").prepend("<div class='msgDiv' >"+$("#chatInput").val() + "</div><br><br>");
+        socket.emit('chat', {
+                msg: '' + $("#chatInput").val()
+            });
         $("#chatInput").val("");
 
     });
@@ -122,6 +125,8 @@ $(document).ready(function () {
             socket.emit('chat', {
                 msg: '' + $("#chatInput").val()
             });
+
+            $("#chatInput").val("");
 
 
         }

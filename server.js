@@ -9,9 +9,8 @@ var _ = require('underscore');
 
 
 var decision_tree = require('./data');
-var blogs = require('./blogs');
 
-console.log(blogs);
+
 
 
 
@@ -74,8 +73,7 @@ io.on('connection', function (socket) {
   	 socket.on('node_event', function (data) {
     
     	var inp_chat_str = data["nodeId"];
-		console.log(data);
-    	console.log(inp_chat_str);
+		
     	var tmp_arr = [];
     	var tmp_node_name = "";
     	var tmp_node_type = 0;

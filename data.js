@@ -3,7 +3,7 @@
 
 var blogs = require('./blogs');
 
-console.log(blogs);
+
 
 var decision_tree = [
 	{	
