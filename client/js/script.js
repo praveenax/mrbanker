@@ -102,8 +102,19 @@ $(document).ready(function () {
 
             $("#chatArea").prepend(html_content);
 
+        } else if (type == 5) {
+
+            var msg = data["msg"]
+            var links = data["links"]
+                //            console.log(data["msg"]);
+
+            var html_content = "<div class='link_box'><h4>" + msg + "</h4> <input type='text' placeholder='" + msg + "' type='text' /> </div>"
+
+            $("#chatArea").prepend(html_content);
+
         } else {
             $("#chatArea").prepend("<div class='msgDiv' >" + data["msg"] + "</div><br><br>");
+            $("#chatArea").prepend("<div class='link_box' >Type @banker to start </div><br><br>");
             // $("#sendButton").click();
         }
         console.log(data["msg"]);

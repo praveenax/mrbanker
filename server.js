@@ -59,6 +59,15 @@ io.on('connection', function (socket) {
         });
     }
 
+    inputEmit = function (event_name, event_msg, event_links) {
+        io.emit(event_name, {
+            type: 5,
+            msg: event_msg,
+            links: event_links
+
+        });
+    }
+
 
     socket.on('chat', function (data) {
 
@@ -114,6 +123,18 @@ io.on('connection', function (socket) {
                 tmp_node_type = 3;
 
                 if (tmp_obj["node_id"] == inp_chat_str) {
+                    tmp_arr = tmp_obj["child_node"];
+                    tmp_node_name = tmp_obj["node_name"];
+
+                    break;
+                }
+
+
+            } else if (tmp_obj["node_type"] == 5) {
+
+                tmp_node_type = 5;
+
+                if (tmp_obj["node_id"] == inp_chat_str) {
                     tmp_arr = tmp_obj["blog_arr"];
                     tmp_node_name = tmp_obj["node_name"];
 
@@ -135,6 +156,8 @@ io.on('connection', function (socket) {
             // properEmit('chat-resp',"Your Choice: "+tmp_node_name,tmp_arr);
             blogEmit('chat-resp', "Your Suggested Article: " + tmp_node_name, tmp_arr);
 
+        } else if (tmp_node_type == 5) {
+            inputEmit('chat-resp', "" + tmp_node_name, tmp_arr);
         }
 
 
@@ -149,9 +172,9 @@ io.on('connection', function (socket) {
 
         var offer_text = data["txt"];
         var offer_img = data["img"];
-//        console.log(data);
+        //        console.log(data);
 
-//        console.log(offer_text);
+        //        console.log(offer_text);
         io.emit('chat-resp', {
             type: 4,
             msg: {
@@ -160,10 +183,10 @@ io.on('connection', function (socket) {
             }
         });
 
-//        console.log({
-            //            txt: offer_text,
-            //            img: offer_img
-            //        });
+        //        console.log({
+        //            txt: offer_text,
+        //            img: offer_img
+        //        });
 
 
 
