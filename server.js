@@ -1,5 +1,8 @@
 // server.js
 
+//Heroku live logging
+
+// heroku logs -t --app mrbanker
 var express = require('express');
 var app = express();
 

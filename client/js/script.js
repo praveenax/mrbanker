@@ -95,7 +95,7 @@ $(document).ready(function () {
             // $("#sendButton").click();
 
         } else {
-            $("#chatArea").prepend("<div class='msgDiv' >" + $("#chatInput").val() + "</div><br><br>");
+            $("#chatArea").prepend("<div class='msgDiv' >" + data["msg"] + "</div><br><br>");
             // $("#sendButton").click();
         }
         console.log(data["msg"]);
