@@ -135,7 +135,11 @@ io.on('connection', function (socket) {
 
 });
 
-var server = http.listen(3000, function () {
+
+// var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
+// var server_host = process.env.YOUR_HOST || '0.0.0.0';
+
+var server = http.listen(process.env.PORT || 3000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
